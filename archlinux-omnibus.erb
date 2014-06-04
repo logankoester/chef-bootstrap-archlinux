@@ -22,11 +22,20 @@ if [ ! -f /usr/bin/chef-client ]; then
 
   mkdir -p /root/build/
   cd /root/build/
-  wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
-  tar -xzvf omnibus-chef-git.tar.gz
-  cd /root/build/omnibus-chef-git
-  makepkg -s -f --asroot --noconfirm
 
+  # Uncomment whichever option you prefer:
+  
+    # Option 1: Build the package from source
+    # You'll get the latest omnibus-chef-git, but it will take a while
+  
+    #wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
+    #tar -xzvf omnibus-chef-git.tar.gz
+    #cd /root/build/omnibus-chef-git
+    #makepkg -s -f --asroot --noconfirm
+
+    # Faster alternative: Fetch an outdated package that has already been built
+    wget https://github.com/logankoester/chef-bootstrap-archlinux-omnibus/blob/master/pkg/omnibus-chef-git-11.6.0.r272.g6c61ef2-1-any.pkg.tar.xz?raw=true
+    
   expect -c "
     spawn pacman -U --noconfirm ./omnibus-chef-git-*.pkg.tar.xz
     expect {
