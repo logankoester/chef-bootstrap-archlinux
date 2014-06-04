@@ -1,3 +1,5 @@
+<% USE_PKG_CACHE = true %>
+
 bash -c '
 <%= "export http_proxy=\"#{knife_config[:bootstrap_proxy]}\"" if knife_config[:bootstrap_proxy] -%>
 
@@ -23,21 +25,17 @@ if [ ! -f /usr/bin/chef-client ]; then
   mkdir -p /root/build/
   cd /root/build/
 
-  # Uncomment whichever option you prefer:
-  
-    # Option 1: Build the package from source
-    # You'll get the latest omnibus-chef-git, but it will take a while
-  
-    #wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
-    #tar -xzvf omnibus-chef-git.tar.gz
-    #cd /root/build/omnibus-chef-git
-    #makepkg -s -f --asroot --noconfirm
-
-    # Faster alternative: Fetch an outdated package that has already been built
-    wget https://github.com/logankoester/chef-bootstrap-archlinux-omnibus/blob/master/pkg/omnibus-chef-git-11.6.0.r272.g6c61ef2-1-any.pkg.tar.xz?raw=true
+<% if USE_PKG_CACHE %>
+  wget -O "omnibus-chef-git-cached.pkg.tar.xz" "https://github.com/logankoester/chef-bootstrap-archlinux-omnibus/blob/master/pkg/omnibus-chef-git-11.6.0.r272.g6c61ef2-1-any.pkg.tar.xz?raw=true"
+<% else %>
+  wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
+  tar -xzvf omnibus-chef-git.tar.gz
+  cd /root/build/omnibus-chef-git
+  makepkg -s -f --asroot --noconfirm
+<% end %>
     
   expect -c "
-    spawn pacman -U --noconfirm ./omnibus-chef-git-*.pkg.tar.xz
+    spawn pacman -U --noconfirm $(find . -name omnibus-chef-git*.xz)
     expect {
       \"y/n\" { send \"y\r\"; exp_continue }
     }
