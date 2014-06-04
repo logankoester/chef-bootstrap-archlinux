@@ -10,7 +10,7 @@ Note that several minutes to finish building the `omnibus-chef-git` package is t
 
 ## Installation
 
-Copy the template into ~/.chef/bootstrap/, and specify the template name using `-d archlinux-omnibus`.
+Copy the template into `~/.chef/bootstrap/`, and specify the template name using `-d archlinux-omnibus`.
 
 ## License
 
