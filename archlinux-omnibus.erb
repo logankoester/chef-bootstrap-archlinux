@@ -87,6 +87,7 @@ cache_options({ :path => "/var/cache/chef/checksums", :skip_expires => true})
 http_proxy         "<%= knife_config[:bootstrap_proxy] %>"
 https_proxy        "<%= knife_config[:bootstrap_proxy] %>"
 <% end -%>
+ssl_verify_mode :verify_peer
 EOP
 
 cat > /etc/chef/first-boot.json <<'EOP'
