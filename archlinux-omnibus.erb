@@ -31,7 +31,7 @@ if [ ! -f /usr/bin/chef-client ]; then
   wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
   tar -xzvf omnibus-chef-git.tar.gz
   cd /root/build/omnibus-chef-git
-  makepkg -s -f --asroot --noconfirm
+  CHEF_VERSION=11.12.8 makepkg -s -f --asroot --noconfirm
 <% end %>
     
   expect -c "
