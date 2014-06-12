@@ -26,7 +26,7 @@ if [ ! -f /usr/bin/chef-client ]; then
   cd /root/build/
 
 <% if USE_PKG_CACHE %>
-  wget -O "omnibus-chef-git-cached.pkg.tar.xz" "https://github.com/logankoester/chef-bootstrap-archlinux-omnibus/blob/master/pkg/omnibus-chef-git-11.6.0.r276.g9d763ab-1-any.pkg.tar.xz?raw=true"
+  wget -O "omnibus-chef-git-cached.pkg.tar.xz" "https://github.com/logankoester/chef-bootstrap-archlinux-omnibus/raw/master/pkg/omnibus-chef-git-11.6.0.r276.g9d763ab-1-any.pkg.tar.xz"
 <% else %>
   wget https://aur.archlinux.org/packages/om/omnibus-chef-git/omnibus-chef-git.tar.gz
   tar -xzvf omnibus-chef-git.tar.gz
