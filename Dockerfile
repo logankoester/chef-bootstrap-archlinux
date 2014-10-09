@@ -1,6 +1,7 @@
 # archlinux-chef
-#
 # VERSION 0.1.0
+#
+# Arch Linux with Chef installed from AUR package omnibus-chef-git
 
 FROM base/archlinux
 MAINTAINER Logan Koester <logan@logankoester.com>
