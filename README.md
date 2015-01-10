@@ -1,3 +1,5 @@
+### Notice: This template is currently [broken upstream](https://aur.archlinux.org/packages/omnibus-chef-git/) by pacman v4.2.0 (removal of `makepkg --asroot`).
+
 # chef-bootstrap-archlinux-omnibus
 
 > A bootstrap template for [knife](http://docs.opscode.com/knife.html)
