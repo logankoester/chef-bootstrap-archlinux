@@ -8,7 +8,7 @@ if [ ! -f /usr/bin/chef-client ]; then
   pacman-key --populate archlinux
   pacman -Syu --noconfirm
 
-  pacman -S --noconfirm --needed wget ruby base-devel ruby-bundler expect ntp
+  pacman -S --noconfirm --needed wget ruby base-devel ruby-bundler ntp
 
   ntpdate -u pool.ntp.org
 
@@ -21,13 +21,7 @@ if [ ! -f /usr/bin/chef-client ]; then
   cd /tmp/build/chef-dk
   sudo -u nobody makepkg -f --noconfirm
     
-  expect -c "
-    spawn pacman -U --noconfirm $(find . -name chef-dk*.xz)
-    expect {
-      \"Y/n\" { send \"y\r\"; exp_continue }
-    }
-    exit
-  "
+  pacman -U --noconfirm $(find . -name chef-dk*.xz)
 fi
 
 mkdir -p /etc/chef
